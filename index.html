@@ -522,6 +522,301 @@
       pointer-events: none;
       z-index: 999;
     }
+
+    /* ══════════════════════════════
+       RESPONSIVE — TABLET ≤ 640px
+    ══════════════════════════════ */
+    @media (max-width: 640px) {
+      .page {
+        padding: 24px 14px 80px;
+      }
+
+      .card {
+        padding: 28px 22px 32px;
+        border-radius: 22px;
+        width: 100%;
+      }
+
+      /* Page 1 — Proposal */
+      #page-proposal .proposal-img {
+        width: 120px;
+        height: 120px;
+      }
+
+      #page-proposal h1 {
+        font-size: 1.45rem;
+      }
+
+      #page-proposal .sub {
+        font-size: 0.9rem;
+        margin-bottom: 22px;
+      }
+
+      .btn-row {
+        gap: 10px;
+      }
+
+      .btn-yes {
+        font-size: 1rem;
+        padding: 13px 28px;
+      }
+
+      .btn-no {
+        font-size: 1rem;
+        padding: 13px 28px;
+      }
+
+      /* Page 2 — Yay */
+      #page-yay .yay-img {
+        width: 150px;
+        height: 130px;
+      }
+
+      #page-yay h1 {
+        font-size: 1.35rem;
+      }
+
+      #page-yay .sub {
+        font-size: 0.88rem;
+      }
+
+      .btn-okay {
+        padding: 13px 32px;
+        font-size: 0.97rem;
+      }
+
+      /* Page 3 — Date */
+      #page-date .icons {
+        font-size: 1.9rem;
+        margin-bottom: 12px;
+      }
+
+      #page-date h1 {
+        font-size: 1.4rem;
+        margin-bottom: 20px;
+      }
+
+      .form-label {
+        font-size: 0.88rem;
+      }
+
+      .form-input,
+      .custom-select-display {
+        font-size: 0.95rem;
+        padding: 12px 14px;
+      }
+
+      .custom-select-option {
+        font-size: 0.9rem;
+        padding: 12px 14px;
+      }
+
+      .btn-setdate {
+        font-size: 0.97rem;
+        padding: 14px;
+      }
+
+      /* Page 4 — Food */
+      #page-food h1 {
+        font-size: 1.3rem;
+        margin-bottom: 18px;
+      }
+
+      .food-grid {
+        gap: 9px;
+      }
+
+      .food-tile {
+        padding: 14px 6px 10px;
+        border-radius: 14px;
+      }
+
+      .food-emoji {
+        font-size: 1.6rem;
+      }
+
+      .food-name {
+        font-size: 0.8rem;
+      }
+
+      .btn-thisone {
+        font-size: 0.97rem;
+        padding: 14px;
+      }
+
+      /* Page 5 — Letter */
+      #page-letter .card {
+        padding: 32px 22px 36px;
+      }
+
+      #page-letter .portrait {
+        width: 100px;
+        height: 100px;
+        margin-bottom: 22px;
+      }
+
+      #page-letter h1 {
+        font-size: 1.25rem;
+      }
+
+      #page-letter .ps {
+        font-size: 0.84rem;
+      }
+    }
+
+    /* ══════════════════════════════
+       RESPONSIVE — IPHONE X ≤ 390px
+       (375×812 safe area)
+    ══════════════════════════════ */
+    @media (max-width: 390px) {
+      .page {
+        padding: 20px 12px 90px;
+      }
+
+      .card {
+        padding: 24px 18px 28px;
+        border-radius: 20px;
+      }
+
+      /* Page 1 */
+      #page-proposal .proposal-img {
+        width: 100px;
+        height: 100px;
+        margin-bottom: 14px;
+      }
+
+      #page-proposal h1 {
+        font-size: 1.25rem;
+      }
+
+      #page-proposal .sub {
+        font-size: 0.83rem;
+        margin-bottom: 18px;
+      }
+
+      .btn-yes {
+        font-size: 0.95rem !important;
+        /* override JS growth cap on small screens */
+        padding: 12px 24px !important;
+        max-width: 160px;
+      }
+
+      .btn-no {
+        font-size: 0.9rem;
+        padding: 11px 20px;
+      }
+
+      .no-msg {
+        font-size: 0.78rem;
+      }
+
+      /* Page 2 */
+      #page-yay .yay-img {
+        width: 130px;
+        height: 110px;
+      }
+
+      #page-yay h1 {
+        font-size: 1.15rem;
+        letter-spacing: -0.3px;
+      }
+
+      .btn-okay {
+        padding: 12px 28px;
+        font-size: 0.92rem;
+      }
+
+      /* Page 3 */
+      #page-date .icons {
+        font-size: 1.6rem;
+        margin-bottom: 10px;
+      }
+
+      #page-date h1 {
+        font-size: 1.2rem;
+        margin-bottom: 16px;
+      }
+
+      .form-input,
+      .custom-select-display {
+        padding: 11px 13px;
+        font-size: 0.9rem;
+      }
+
+      .custom-select-option {
+        padding: 11px 13px;
+        font-size: 0.85rem;
+      }
+
+      .btn-setdate {
+        padding: 13px;
+        font-size: 0.92rem;
+      }
+
+      /* Page 4 */
+      #page-food h1 {
+        font-size: 1.15rem;
+        margin-bottom: 14px;
+      }
+
+      .food-grid {
+        gap: 8px;
+      }
+
+      .food-tile {
+        padding: 12px 4px 8px;
+        border-radius: 12px;
+      }
+
+      .food-emoji {
+        font-size: 1.4rem;
+        margin-bottom: 4px;
+      }
+
+      .food-name {
+        font-size: 0.75rem;
+      }
+
+      .btn-thisone {
+        padding: 13px;
+        font-size: 0.92rem;
+      }
+
+      /* Page 5 */
+      #page-letter .card {
+        padding: 26px 18px 30px;
+      }
+
+      #page-letter .portrait {
+        width: 88px;
+        height: 88px;
+        margin-bottom: 18px;
+      }
+
+      #page-letter h1 {
+        font-size: 1.1rem;
+        margin-bottom: 14px;
+      }
+
+      #page-letter .ps {
+        font-size: 0.78rem;
+      }
+
+      .hearts-ribbon {
+        font-size: 1.1rem;
+      }
+    }
+
+    /* Safe area inset for iPhone X notch/home bar */
+    @supports (padding-bottom: env(safe-area-inset-bottom)) {
+      .page {
+        padding-bottom: calc(80px + env(safe-area-inset-bottom));
+      }
+
+      .footer {
+        bottom: calc(14px + env(safe-area-inset-bottom));
+      }
+    }
   </style>
 </head>
 
@@ -599,8 +894,8 @@
           <span class="food-name">Pizza</span>
         </div>
         <div class="food-tile" onclick="selectFood(this)">
-          <span class="food-emoji">🍣</span>
-          <span class="food-name">Sushi</span>
+          <span class="food-emoji">🥯</span>
+          <span class="food-name">Bagels</span>
         </div>
         <div class="food-tile" onclick="selectFood(this)">
           <span class="food-emoji">🍔</span>
@@ -627,7 +922,7 @@
   <div class="page" id="page-letter">
     <div class="card">
       <img class="portrait" src=" https://media.tenor.com/mtiOW6O-k8YAAAAM/shrek-shrek-rizz.gif" alt="portrait" />
-      <h1>glad you didn't say no. be ready by 6, I'm coming to get you 🚗</h1>
+      <h1>glad you didn't say no. be ready, I'm omw from Hyd coming to get you 🚗</h1>
       <p class="ps">P.S. normal people text. I made a website for Aaruu. during lunch. for you. no big deal.</p>
     </div>
     <div class="hearts-ribbon">
@@ -737,9 +1032,10 @@
 
       const yesBtn = document.getElementById('yesBtn');
       const cur = parseFloat(window.getComputedStyle(yesBtn).fontSize) || 18;
-      yesBtn.style.fontSize = Math.min(cur + 2, 34) + 'px';
+      const maxSize = window.innerWidth <= 390 ? 20 : window.innerWidth <= 640 ? 26 : 34;
+      yesBtn.style.fontSize = Math.min(cur + 2, maxSize) + 'px';
 
-      const margin = 70;
+      const margin = window.innerWidth <= 390 ? 50 : 70;
       const x = margin + Math.random() * (window.innerWidth - margin * 2);
       const y = margin + Math.random() * (window.innerHeight - margin * 2);
       btn.style.left = x + 'px';
