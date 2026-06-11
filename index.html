@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+  <title>Date Proposal</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: #fdf0ec;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* ── Floating flowers ── */
+    .flowers-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .flower {
+      position: absolute;
+      font-size: 1.1rem;
+      opacity: 0.7;
+      animation: flowerFloat linear infinite;
+    }
+
+    @keyframes flowerFloat {
+      0% {
+        transform: translateY(105vh) rotate(0deg);
+        opacity: 0;
+      }
+
+      8% {
+        opacity: 0.7;
+      }
+
+      92% {
+        opacity: 0.7;
+      }
+
+      100% {
+        transform: translateY(-8vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    /* ── Pages ── */
+    .page {
+      display: none;
+      width: 100%;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      z-index: 1;
+      position: relative;
+      min-height: 100vh;
+      padding: 40px 16px;
+    }
+
+    .page.active {
+      display: flex;
+    }
+
+    /* ── Card ── */
+    .card {
+      background: #fff;
+      border-radius: 28px;
+      padding: 44px 52px 48px;
+      max-width: 600px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 4px 40px rgba(200, 100, 120, 0.08), 0 1px 8px rgba(200, 100, 120, 0.06);
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ── Footer ── */
+    .footer {
+      position: fixed;
+      bottom: 18px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      font-size: 0.78rem;
+      color: #e096aa;
+      z-index: 2;
+      font-weight: 600;
+    }
+
+    /* ══════════════════════════════
+       PAGE 1 — PROPOSAL
+    ══════════════════════════════ */
+    #page-proposal .proposal-img {
+      width: 160px;
+      height: 160px;
+      object-fit: contain;
+      margin-bottom: 20px;
+      border-radius: 24px;
+      animation: wiggle 3.5s ease-in-out infinite;
+    }
+
+    @keyframes wiggle {
+
+      0%,
+      100% {
+        transform: rotate(-3deg) scale(1);
+      }
+
+      50% {
+        transform: rotate(3deg) scale(1.04);
+      }
+    }
+
+    #page-proposal h1 {
+      font-size: 2rem;
+      font-weight: 900;
+      color: #5a1a2a;
+      margin-bottom: 10px;
+    }
+
+    #page-proposal .sub {
+      font-size: 1rem;
+      color: #a06070;
+      margin-bottom: 30px;
+      font-weight: 600;
+    }
+
+    .btn-row {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-yes {
+      background: linear-gradient(135deg, #f48fb1, #f06292);
+      color: #fff;
+      border: none;
+      border-radius: 50px;
+      padding: 14px 38px;
+      font-size: 1.1rem;
+      font-weight: 800;
+      font-family: 'Nunito', sans-serif;
+      cursor: pointer;
+      box-shadow: 0 6px 20px rgba(240, 98, 146, 0.3);
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+
+    .btn-yes:hover {
+      transform: scale(1.06) translateY(-2px);
+      box-shadow: 0 10px 28px rgba(240, 98, 146, 0.4);
+    }
+
+    .btn-no {
+      background: #fff0f5;
+      color: #c2607a;
+      border: 2px solid #f4b8cc;
+      border-radius: 50px;
+      padding: 14px 38px;
+      font-size: 1.1rem;
+      font-weight: 800;
+      font-family: 'Nunito', sans-serif;
+      cursor: pointer;
+      position: fixed;
+      z-index: 999;
+      transition: left 0.08s, top 0.08s;
+    }
+
+    .no-msg {
+      margin-top: 16px;
+      font-size: 0.88rem;
+      color: #c06080;
+      font-weight: 600;
+      min-height: 20px;
+    }
+
+    /* ══════════════════════════════
+       PAGE 2 — YAY
+    ══════════════════════════════ */
+    #page-yay .yay-img {
+      width: 200px;
+      height: 170px;
+      object-fit: contain;
+      border-radius: 20px;
+      margin-bottom: 24px;
+      background: #f5c842;
+      border-radius: 22px;
+    }
+
+    #page-yay h1 {
+      font-size: 2rem;
+      font-weight: 900;
+      color: #5a1a2a;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: -0.5px;
+    }
+
+    #page-yay .sub {
+      font-size: 1rem;
+      color: #7a3048;
+      margin-bottom: 32px;
+      font-weight: 600;
+    }
+
+    .btn-okay {
+      background: #f9c0d4;
+      color: #7a3048;
+      border: none;
+      border-radius: 50px;
+      padding: 15px 44px;
+      font-size: 1.05rem;
+      font-weight: 700;
+      font-family: 'Nunito', sans-serif;
+      cursor: pointer;
+      transition: transform 0.15s, background 0.15s;
+    }
+
+    .btn-okay:hover {
+      background: #f5a8c0;
+      transform: scale(1.05);
+    }
+
+    /* ══════════════════════════════
+       PAGE 3 — DATE PICKER
+    ══════════════════════════════ */
+    #page-date .icons {
+      font-size: 2.4rem;
+      margin-bottom: 18px;
+    }
+
+    #page-date h1 {
+      font-size: 1.9rem;
+      font-weight: 800;
+      color: #5a1a2a;
+      margin-bottom: 28px;
+    }
+
+    .form-group {
+      text-align: left;
+      margin-bottom: 20px;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: #5a1a2a;
+      margin-bottom: 8px;
+    }
+
+    .form-input,
+    .form-select {
+      width: 100%;
+      padding: 14px 16px;
+      border: 1.5px solid #f0d0da;
+      border-radius: 14px;
+      font-size: 1rem;
+      font-family: 'Nunito', sans-serif;
+      color: #5a1a2a;
+      background: #fff;
+      appearance: none;
+      -webkit-appearance: none;
+      outline: none;
+      cursor: pointer;
+      transition: border-color 0.2s;
+    }
+
+    .form-input:focus,
+    .form-select:focus {
+      border-color: #f06292;
+    }
+
+    .select-wrap {
+      position: relative;
+    }
+
+    .select-wrap::after {
+      content: '▾';
+      position: absolute;
+      right: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #c08090;
+      pointer-events: none;
+      font-size: 1rem;
+    }
+
+    /* custom dropdown */
+    .custom-select {
+      position: relative;
+    }
+
+    .custom-select-display {
+      width: 100%;
+      padding: 14px 16px;
+      border: 1.5px solid #f0d0da;
+      border-radius: 14px;
+      font-size: 1rem;
+      font-family: 'Nunito', sans-serif;
+      color: #9a8090;
+      background: #fff;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: border-color 0.2s;
+      user-select: none;
+    }
+
+    .custom-select-display.selected {
+      color: #5a1a2a;
+    }
+
+    .custom-select-display:hover {
+      border-color: #f06292;
+    }
+
+    .custom-select-display.open {
+      border-color: #f06292;
+      border-radius: 14px 14px 0 0;
+    }
+
+    .custom-select-dropdown {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: #fff;
+      border: 1.5px solid #f0d0da;
+      border-top: none;
+      border-radius: 0 0 14px 14px;
+      z-index: 100;
+      box-shadow: 0 8px 24px rgba(200, 100, 120, 0.1);
+    }
+
+    .custom-select-dropdown.open {
+      display: block;
+    }
+
+    .custom-select-option {
+      padding: 14px 16px;
+      font-size: 0.97rem;
+      font-family: 'Nunito', sans-serif;
+      color: #5a1a2a;
+      cursor: pointer;
+      border-bottom: 1px solid #faeaee;
+      transition: background 0.15s;
+    }
+
+    .custom-select-option:last-child {
+      border-bottom: none;
+    }
+
+    .custom-select-option:hover {
+      background: #fff0f4;
+    }
+
+    .btn-setdate {
+      width: 100%;
+      background: #f9b8ce;
+      color: #7a3048;
+      border: none;
+      border-radius: 50px;
+      padding: 16px;
+      font-size: 1.05rem;
+      font-weight: 700;
+      font-family: 'Nunito', sans-serif;
+      cursor: pointer;
+      margin-top: 8px;
+      transition: background 0.15s, transform 0.15s;
+    }
+
+    .btn-setdate:hover {
+      background: #f5a0be;
+      transform: scale(1.02);
+    }
+
+    /* ══════════════════════════════
+       PAGE 4 — FOOD
+    ══════════════════════════════ */
+    #page-food h1 {
+      font-size: 1.75rem;
+      font-weight: 900;
+      color: #5a1a2a;
+      margin-bottom: 26px;
+    }
+
+    .food-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .food-tile {
+      background: #f5eef8;
+      border: 2px solid transparent;
+      border-radius: 18px;
+      padding: 18px 10px 14px;
+      cursor: pointer;
+      text-align: center;
+      transition: background 0.15s, border-color 0.15s, transform 0.15s;
+      font-family: 'Nunito', sans-serif;
+    }
+
+    .food-tile:hover {
+      background: #ede0f5;
+      transform: scale(1.04);
+    }
+
+    .food-tile.selected {
+      border-color: #4a5fdf;
+      background: #fff;
+      box-shadow: 0 0 0 2px #4a5fdf33;
+    }
+
+    .food-emoji {
+      font-size: 2rem;
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .food-name {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #5a1a2a;
+    }
+
+    .btn-thisone {
+      width: 100%;
+      background: #f9b8ce;
+      color: #7a3048;
+      border: none;
+      border-radius: 50px;
+      padding: 16px;
+      font-size: 1.05rem;
+      font-weight: 700;
+      font-family: 'Nunito', sans-serif;
+      cursor: pointer;
+      transition: background 0.15s, transform 0.15s;
+    }
+
+    .btn-thisone:hover {
+      background: #f5a0be;
+      transform: scale(1.02);
+    }
+
+    /* ══════════════════════════════
+       PAGE 5 — LETTER
+    ══════════════════════════════ */
+    #page-letter .card {
+      padding: 52px 56px;
+    }
+
+    #page-letter .portrait {
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 30px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    #page-letter h1 {
+      font-size: 1.7rem;
+      font-weight: 800;
+      color: #5a1a2a;
+      margin-bottom: 18px;
+      line-height: 1.35;
+    }
+
+    #page-letter .ps {
+      font-size: 0.92rem;
+      color: #b09090;
+      font-style: italic;
+      font-weight: 600;
+      line-height: 1.55;
+    }
+
+    /* bottom ribbon hearts */
+    .hearts-ribbon {
+      display: flex;
+      justify-content: space-around;
+      width: 100%;
+      max-width: 600px;
+      padding: 0 20px;
+      margin-top: 20px;
+      font-size: 1.4rem;
+      z-index: 1;
+    }
+
+    /* confetti */
+    #confetti-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 999;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="flowers-bg" id="flowersBg"></div>
+  <canvas id="confetti-canvas"></canvas>
+
+  <!-- ══ PAGE 1: PROPOSAL ══ -->
+  <div class="page active" id="page-proposal">
+    <div class="card">
+      <img class="proposal-img" src="https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif" alt="cute bear" />
+      <h1>Will you go on a date with me? 🥺</h1>
+      <p class="sub">Please say yes… pretty please 🌸</p>
+      <div class="btn-row">
+        <button class="btn-yes" id="yesBtn" onclick="goTo('page-yay')">Yes! 💖</button>
+        <button class="btn-no" id="noBtn" onmouseenter="runAway()" ontouchstart="runAway()">No 😢</button>
+      </div>
+      <p class="no-msg" id="noMsg"></p>
+    </div>
+  </div>
+
+  <!-- ══ PAGE 2: YAY ══ -->
+  <div class="page" id="page-yay">
+    <div class="card">
+      <img class="yay-img" src="https://media.giphy.com/media/l3fZOxBdAIOiyt8CQ/giphy.gif" alt="spongebob excited" />
+      <h1>WAIT YOU ACTUALLY SAID YES?? 😭</h1>
+      <p class="sub">I was so ready for you to say no 😅</p>
+      <button class="btn-okay" onclick="goTo('page-date')">okay okay! →</button>
+    </div>
+  </div>
+
+  <!-- ══ PAGE 3: DATE PICKER ══ -->
+  <div class="page" id="page-date">
+    <div class="card">
+      <div class="icons">📅🐾</div>
+      <h1>So… when are you free?</h1>
+
+      <div class="form-group">
+        <label class="form-label">Pick a Day ✨</label>
+        <input type="date" class="form-input" id="datePicker" />
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">What Time? ⏰</label>
+        <div class="custom-select" id="timeSelectWrap">
+          <div class="custom-select-display" id="timeDisplay" onclick="toggleDropdown()">
+            <span id="timeDisplayText">Select a time...</span>
+            <span>▾</span>
+          </div>
+          <div class="custom-select-dropdown" id="timeDropdown">
+            <div class="custom-select-option" onclick="selectTime('5:00 PM', this)">5:00 PM — we eating with the
+              retirees</div>
+            <div class="custom-select-option" onclick="selectTime('6:00 PM', this)">6:00 PM — this is the right answer
+              tbh</div>
+            <div class="custom-select-option" onclick="selectTime('7:00 PM', this)">7:00 PM — you're making me hungry
+              already</div>
+            <div class="custom-select-option" onclick="selectTime('8:00 PM', this)">8:00 PM — we eating dinner or
+              breakfast?</div>
+          </div>
+        </div>
+      </div>
+
+      <button class="btn-setdate" onclick="submitDate()">set the date! 🧡</button>
+    </div>
+  </div>
+
+  <!-- ══ PAGE 4: FOOD ══ -->
+  <div class="page" id="page-food">
+    <div class="card">
+      <h1>What are we feeling? 🍜✨</h1>
+      <div class="food-grid">
+        <div class="food-tile" onclick="selectFood(this)">
+          <span class="food-emoji">🍕</span>
+          <span class="food-name">Pizza</span>
+        </div>
+        <div class="food-tile" onclick="selectFood(this)">
+          <span class="food-emoji">🍣</span>
+          <span class="food-name">Sushi</span>
+        </div>
+        <div class="food-tile" onclick="selectFood(this)">
+          <span class="food-emoji">🍔</span>
+          <span class="food-name">Burgers</span>
+        </div>
+        <div class="food-tile" onclick="selectFood(this)">
+          <span class="food-emoji">🍝</span>
+          <span class="food-name">Pasta</span>
+        </div>
+        <div class="food-tile" onclick="selectFood(this)">
+          <span class="food-emoji">🌮</span>
+          <span class="food-name">Tacos</span>
+        </div>
+        <div class="food-tile" onclick="selectFood(this)">
+          <span class="food-emoji">🍜</span>
+          <span class="food-name">Ramen</span>
+        </div>
+      </div>
+      <button class="btn-thisone" onclick="submitFood()">this one! →</button>
+    </div>
+  </div>
+
+  <!-- ══ PAGE 5: LETTER ══ -->
+  <div class="page" id="page-letter">
+    <div class="card">
+      <img class="portrait" src=" https://media.tenor.com/mtiOW6O-k8YAAAAM/shrek-shrek-rizz.gif" alt="portrait" />
+      <h1>glad you didn't say no. be ready by 6, I'm coming to get you 🚗</h1>
+      <p class="ps">P.S. normal people text. I made a website for Aaruu. during lunch. for you. no big deal.</p>
+    </div>
+    <div class="hearts-ribbon">
+      <span>💗</span><span>💗</span><span>💗</span><span>💗</span>
+    </div>
+  </div>
+
+  <div class="footer">Made with ❤️ by Akshshsh</div>
+
+  <script>
+    /* ══════════════════════════════════════════════
+       SESSION STORE — collects all responses
+    ══════════════════════════════════════════════ */
+    const session = {
+      respondedAt: new Date().toISOString(),
+      saidYes: false,
+      noAttempts: 0,
+      dateChosen: null,
+      timeChosen: null,
+      foodChosen: null,
+    };
+
+    /* ══════════════════════════════════════════════
+       FORMSPREE SUBMISSION
+    ══════════════════════════════════════════════ */
+    async function submitToFormspree() {
+      try {
+        await fetch('https://formspree.io/f/xykanezj', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify({
+            '💌 Response Time': session.respondedAt,
+            '✅ Said Yes': 'Yes',
+            '🙅 No Button Dodges': session.noAttempts,
+            '📅 Date Chosen': session.dateChosen,
+            '⏰ Time Chosen': session.timeChosen,
+            '🍽️ Food Choice': session.foodChosen,
+          })
+        });
+        // silent — user sees the letter page regardless of network result
+      } catch (e) {
+        console.warn('Formspree submission failed silently:', e);
+      }
+    }
+
+    /* ══════════════════════════════════════════════
+       FLOATING FLOWERS
+    ══════════════════════════════════════════════ */
+    (function () {
+      const bg = document.getElementById('flowersBg');
+      for (let i = 0; i < 20; i++) {
+        const el = document.createElement('span');
+        el.className = 'flower';
+        el.textContent = '🌸';
+        el.style.left = Math.random() * 100 + 'vw';
+        el.style.fontSize = (0.7 + Math.random() * 0.9) + 'rem';
+        const dur = 10 + Math.random() * 16;
+        el.style.animationDuration = dur + 's';
+        el.style.animationDelay = (-Math.random() * dur) + 's';
+        bg.appendChild(el);
+      }
+    })();
+
+    /* ══════════════════════════════════════════════
+       PAGE ROUTING
+    ══════════════════════════════════════════════ */
+    function goTo(pageId) {
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      document.getElementById(pageId).classList.add('active');
+      window.scrollTo(0, 0);
+      document.getElementById('noBtn').style.display = 'none';
+
+      // Track yes
+      if (pageId === 'page-yay') {
+        session.saidYes = true;
+      }
+    }
+
+    /* ══════════════════════════════════════════════
+       NO BUTTON — RUNS AWAY
+    ══════════════════════════════════════════════ */
+    let noCount = 0;
+    const noMessages = [
+      "Wait, are you sure? 🥺",
+      "Come on… don't be mean 😭",
+      "I'll cry 😢",
+      "Last chance!! 🙈",
+      "Okay fine… but I'll be sad 💔",
+      "Are you SURE sure? 🐻",
+      "Please reconsider 🌸",
+      "My heart can't take this 💔",
+    ];
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const btn = document.getElementById('noBtn');
+      const yesBtn = document.getElementById('yesBtn');
+      const yesRect = yesBtn.getBoundingClientRect();
+      btn.style.left = (yesRect.right + 14) + 'px';
+      btn.style.top = yesRect.top + 'px';
+    });
+
+    function runAway() {
+      const btn = document.getElementById('noBtn');
+      noCount++;
+      session.noAttempts = noCount;
+      document.getElementById('noMsg').textContent = noMessages[Math.min(noCount - 1, noMessages.length - 1)];
+
+      const yesBtn = document.getElementById('yesBtn');
+      const cur = parseFloat(window.getComputedStyle(yesBtn).fontSize) || 18;
+      yesBtn.style.fontSize = Math.min(cur + 2, 34) + 'px';
+
+      const margin = 70;
+      const x = margin + Math.random() * (window.innerWidth - margin * 2);
+      const y = margin + Math.random() * (window.innerHeight - margin * 2);
+      btn.style.left = x + 'px';
+      btn.style.top = y + 'px';
+    }
+
+    /* ══════════════════════════════════════════════
+       CUSTOM TIME DROPDOWN
+    ══════════════════════════════════════════════ */
+    let selectedTime = null;
+
+    function toggleDropdown() {
+      document.getElementById('timeDisplay').classList.toggle('open');
+      document.getElementById('timeDropdown').classList.toggle('open');
+    }
+
+    function selectTime(value, el) {
+      selectedTime = value;
+      document.getElementById('timeDisplayText').textContent = el.textContent;
+      document.getElementById('timeDisplay').classList.add('selected');
+      document.getElementById('timeDisplay').classList.remove('open');
+      document.getElementById('timeDropdown').classList.remove('open');
+    }
+
+    document.addEventListener('click', (e) => {
+      const wrap = document.getElementById('timeSelectWrap');
+      if (wrap && !wrap.contains(e.target)) {
+        document.getElementById('timeDisplay').classList.remove('open');
+        document.getElementById('timeDropdown').classList.remove('open');
+      }
+    });
+
+    /* ── Save date + time, go to food ── */
+    function submitDate() {
+      const dateVal = document.getElementById('datePicker').value;
+      if (!dateVal || !selectedTime) {
+        alert('Pick a day and a time first! 🗓️');
+        return;
+      }
+      // Store in session
+      session.dateChosen = dateVal;           // e.g. "2026-06-18"
+      session.timeChosen = selectedTime;      // e.g. "6:00 PM"
+      goTo('page-food');
+    }
+
+    /* ══════════════════════════════════════════════
+       FOOD SELECTION
+    ══════════════════════════════════════════════ */
+    function selectFood(el) {
+      document.querySelectorAll('.food-tile').forEach(t => t.classList.remove('selected'));
+      el.classList.add('selected');
+    }
+
+    /* ── Save food, submit to Formspree, go to letter ── */
+    function submitFood() {
+      const selected = document.querySelector('.food-tile.selected');
+      if (!selected) {
+        alert('Pick something to eat first! 🍽️');
+        return;
+      }
+      session.foodChosen = selected.querySelector('.food-name').textContent;
+
+      // Fire-and-forget submission — letter page loads immediately
+      submitToFormspree();
+      goTo('page-letter');
+      setTimeout(launchConfetti, 300);
+    }
+
+    /* ══════════════════════════════════════════════
+       CONFETTI
+    ══════════════════════════════════════════════ */
+    function launchConfetti() {
+      const canvas = document.getElementById('confetti-canvas');
+      const ctx = canvas.getContext('2d');
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      const colors = ['#f48fb1', '#f06292', '#ffccd5', '#ff80ab', '#fff', '#ffd6f5', '#ffc4e0'];
+      const pieces = Array.from({ length: 160 }, () => ({
+        x: Math.random() * canvas.width,
+        y: -20 - Math.random() * 200,
+        w: 7 + Math.random() * 9,
+        h: 4 + Math.random() * 7,
+        color: colors[Math.floor(Math.random() * colors.length)],
+        speed: 2 + Math.random() * 4,
+        angle: Math.random() * Math.PI * 2,
+        spin: (Math.random() - 0.5) * 0.14,
+        vx: (Math.random() - 0.5) * 2,
+      }));
+      function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        let alive = false;
+        for (const p of pieces) {
+          p.y += p.speed; p.x += p.vx; p.angle += p.spin;
+          if (p.y < canvas.height + 20) alive = true;
+          ctx.save();
+          ctx.translate(p.x, p.y);
+          ctx.rotate(p.angle);
+          ctx.fillStyle = p.color;
+          ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+          ctx.restore();
+        }
+        if (alive) requestAnimationFrame(draw);
+        else ctx.clearRect(0, 0, canvas.width, canvas.height);
+      }
+      draw();
+    }
+  </script>
+</body>
+
+</html>
